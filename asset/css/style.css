@@ -1,0 +1,15 @@
+
+#cont{
+	
+   
+	background: url("../img/Quizz_WordPress-scaled.jpg") no-repeat center center fixed;
+	background-size:contain;
+
+	}
+#section{
+	
+	background: url("../img/images.jpg") no-repeat center center fixed ;
+	background-size: 40%;
+	margin-top: 2%;
+
+	}
