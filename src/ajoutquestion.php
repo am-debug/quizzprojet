@@ -1,15 +1,15 @@
 
 <div style="width:30%;float:left; margin-left:30%;margin-top:-26%">
- 
+  <form action="" id="formul">
         <div class="form-group">
             <label for="question">Question:</label>
-            <textarea class="form-control" rows="5" id="question"></textarea>
+            <textarea class="form-control" name="question" rows="5" id="question"></textarea>
             <span id="missquestion"></span>
         </div>
 
         <div class="form-group">
             <label for="question">Score:</label>
-            <input type="number" id="points" class="form-control" >
+            <input type="number" name="score" id="points" class="form-control" >
             <span id="misspoints"></span>
         </div>
 
@@ -35,6 +35,7 @@
                 Subscribe
               </button>   
         </div>
+        </form>
         
   
       
@@ -118,7 +119,7 @@
     /////////////
    
     
-    
+  
 
 
   </script>

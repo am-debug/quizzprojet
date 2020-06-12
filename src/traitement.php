@@ -1,26 +1,27 @@
 <?php
 
+session_start();
+
 //action.php
 
-include('database_connection.php');
+include('bd.php');
 
 if(isset($_POST["action"]))
 {
 	if($_POST["action"] == "insert")
 	{
-		$query = "
-		INSERT INTO tbl_sample (first_name, last_name) VALUES ('".$_POST["first_name"]."', '".$_POST["last_name"]."')
-		";
-		$statement = $connect->prepare($query);
+		
+		$query = "INSERT INTO utilisateur (NOM, PRENOM) VALUE ('".$_POST["Prenom"]."', '".$_POST["Nom"]."')";
+		$statement = $bdd->prepare($query);
 		$statement->execute();
 		echo '<p>Data Inserted...</p>';
 	}
 	if($_POST["action"] == "fetch_single")
 	{
 		$query = "
-		SELECT * FROM tbl_sample WHERE id = '".$_POST["id"]."'
+		SELECT * FROM utilisateur WHERE NOM = '".$_POST["Nom"]."'
 		";
-		$statement = $connect->prepare($query);
+		$statement =  $bdd->prepare($query);
 		$statement->execute();
 		$result = $statement->fetchAll();
 		foreach($result as $row)
@@ -42,13 +43,7 @@ if(isset($_POST["action"]))
 		$statement->execute();
 		echo '<p>Data Updated</p>';
 	}
-	if($_POST["action"] == "delete")
-	{
-		$query = "DELETE FROM tbl_sample WHERE id = '".$_POST["id"]."'";
-		$statement = $connect->prepare($query);
-		$statement->execute();
-		echo '<p>Data Deleted</p>';
-	}
+	
 }
 
 ?>

@@ -3,41 +3,22 @@ session_start();
 ?>
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-  	<title> page de connexion </title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-    
-
-    <!-- jQuery library -->
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-
-	<!-- Latest compiled JavaScript -->
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js">
-  </script>
- <link rel="stylesheet" type="text/css" href="asset/css/style.css">
- <link rel="stylesheet" type="text/css" href="../asset/css/style.css">
-   
+ 
 
   </head>
   <body>
-    <div class="cadre" >
-      <div class="interieur-cadre">
-      <div class="container ">
-      <div class="w-auto bg-info mt-2 p-2"  id="cont" style="min-height:900px;">
-         <div class="w-auto py-0 mx-auto px-0" id="section" style="min-height:450px;">
+    
          <div class="row">
                 <div class="col-sm-2 col-md-lg" >
-                <form action="" enctype="multipart/form-data" id="formul"  style="margin-top:-65%; float:left; margin-left:150%">
-                     <div  style="float:left;margin-left:90% ;margin-top:35% ;width:50% ;height:50%">
+                <form action="" enctype="multipart/form-data" id="formul"  style="margin-top:-250%; float:left; margin-left:150%">
+                     <div  style="float:left;margin-left:30% ;margin-top:35% ;width:50% ;height:50%">
                           <label for="username">Avatar</label><br>
                           <input type="file" id="tof" name="avatar"  accept="image/*" onchange="loadFile(event)" value="Choisir un fichier" >
                           <span id="misstof"></span><br> 
                     </div>
                     <div class="droite">
                             
-                            <img id="output" alt="avatar" class="avatar" style="margin-top:20%;background-color:blue;vertical-align: middle; width:50%; height:50%;;  border-radius: 50%; margin-left: 15%;">
+                            <img id="output" alt="avatar" class="avatar" style="margin-top:10%;background-color:blue;vertical-align: middle; width:50%; height:50%;;  border-radius: 50%; margin-left: 25%;">
                             <script>
                                         var loadFile = function(event) {
                                             var output = document.getElementById('output');
@@ -47,15 +28,15 @@ session_start();
                                             }
                                         };
                                 </script>
-                                 <h2 style=" color:black; font-size:x-small; float: right; margin-right:95px; width: 60%;  margin: 0 auto;  margin-top: 40px;">Avatar Admin</h2>
+                                 <h2 style=" color:black; font-size:x-small; float: right; margin-right:95px; width: 60%;  margin: 0 auto;  margin-top: 10px;">Avatar Admin</h2>
                     </div>           
-                    <div  style="float:left;margin-left:150% ;margin-top:18% ;width:200% ;height:250%">
+                    <div  style="float:left;margin-left:150% ;margin-top:-28% ;width:200% ;height:250%">
                         <label for="Prenom">Prenom</label><br>
                         <input type="text" id="Prenom" name="Prenom" placeholder="Entrer votre prenom">
                         <span id="missprenom"></span><br>
                         
                     </div>
-                    <div  style="float:left;margin-left:150% ;margin-top:5% ;width:200% ;height:250%">
+                    <div  style="float:left;margin-left:150% ;margin-top:-7% ;width:200% ;height:250%">
                         <label for="Nom">Nom</label><br>
                         <input type="text" id="Nom" name="Nom" placeholder="Entrer vtre nom">
                         <span id="missnom"></span><br>
@@ -149,31 +130,25 @@ session_start();
      });
   
   
-$('#formul').submit(function (e) { 
-  var prenom = $('#Prenom').val();
-    var nom = $('#Nom').val();
-    var login = $('#login').val();
-    var password = $('#pass').val();
-    var paswordrepeat= $('#passe').val();
+  $('#formul').submit(function (e) { 
+  var forms= document.getElementById('formul');
+  var fd= new FormData(forms);
   e.preventDefault();
   $.ajax({
     type: "POST",
     url: "register2.php",
-    data: {
-      Prenom:prenom,
-      Nom:nom,
-      login:login,
-      pass:password,
-      passe:paswordrepeat
-    },
+    data:fd,
+    processData: false,
+    contentType: false,
     // dataType: "dataType",
-   
+    
     success: function (response) {
-      alert(response)
-      window.location.replace('../index.php');
-  }
+      
+  window.location.replace('../index.php');
+    }
+  });
 });
-}); 
+ 
     
   });
   </script>
