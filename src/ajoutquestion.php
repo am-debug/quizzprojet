@@ -1,32 +1,32 @@
 
 <div style="width:30%;float:left; margin-left:30%;margin-top:-26%">
-  <form action="" id="formul">
+<div>
+  <form action=""  id="formul" >
         <div class="form-group">
             <label for="question">Question:</label>
-            <textarea class="form-control" name="question" rows="5" id="question"></textarea>
+            <textarea class="form-control" rows="5" id="question" name="question"></textarea>
             <span id="missquestion"></span>
         </div>
 
         <div class="form-group">
-            <label for="question">Score:</label>
-            <input type="number" name="score" id="points" class="form-control" >
+            <label for="question">Points:</label>
+            <input type="number" id="points" name="points" >
             <span id="misspoints"></span>
         </div>
 
         <div class="form-group">
             <label for="choix">Type dereponse:</label>
             <select id="choix" name="choix" >
-            <option value="texte">--choix---</option>
+                <option value="">--choix---</option>
                 <option value="texte">choix texte</option>
                 <option value="simple">choix simple</option>
                 <option value="multiple">choix multiple</option>
             </select> 
             <span id="misschoix"></span>
-            <div class="inputs">
-
-            </div>
+           
+            <button class="add_field_button">Add More Fields</button>
             <div class="input_fields_wrap">
-                <button class="add_field_button">Add More Fields</button>
+               
                <!-- <div><input type="text" name="mytext[]"></div>-->
             </div>
         </div>
@@ -35,8 +35,7 @@
                 Subscribe
               </button>   
         </div>
-        </form>
-        
+      </form>  
   
       
     <!-- Optional JavaScript -->
@@ -48,6 +47,53 @@
   
   <script>
     $(document).ready(function () {
+      $('#choix').change(function (e) { 
+        e.preventDefault();
+            $('.ajout').remove(); 
+                
+      });
+    
+     $('.add_field_button').click(function (e) { 
+       
+      
+       let choix=$('#choix').val()
+      var wrapper=$('.input_fields_wrap')
+       e.preventDefault();
+       if(choix==="simple")
+      {
+        
+        $(wrapper).append('<div class="ajout"><input type="text" name="mytext[]"/><input type="radio" name="monchoix"/> <a href="#" class="remove_field">Remove</a></div>'); //add input box
+      }
+      else if(choix==="multiple"){
+        
+        $(wrapper).append('<div  class="ajout"><input type="text" name="mytext[]"/> <input type="checkbox" name="monchoix"/> <a href="#" class="remove_field">Remove</a></div>'); //add input box
+      }
+      else {
+        $(wrapper).append('<div  class="ajout"><input type="text" name="mytext[]" /><a href="#" class="remove_field">Remove</a></div>'); //add input box
+      }
+       
+      $(wrapper).on("click",".remove_field", function(e){ //user click on remove text
+		e.preventDefault(); $(this).parent('div').remove(); 
+	  })
+     });
+
+     	
+	// $(wrapper).on("click",".remove_field", function(e){ //user click on remove text
+	// 	e.preventDefault(); $(this).parent('div').remove(); 
+	//  })
+
+  //    $('.remove_field').each(function(e){
+  //       alert(e)})
+    //  $('.remove_field').each(function(e) {
+    //    alert(el)
+    //     $(this).click((e) => {
+    //       e.preventDefault();
+    //       alert('click'+ $(this).html())
+    //         $(this).parent().remove();
+    //     });
+    // });
+    //-----------Validation-----------------------
+    
       $('#submit').click(function (e) {
       var erreuLog='';
       var erreurPass='';
@@ -59,14 +105,14 @@
       $('#missquestion').text(erreuLog);
 
     }
-    if($.trim($('#points').val()).length==0)
+    if($.trim($('#points').val()).length<=0)
     {
       e.preventDefault();
       erreuLog="le score est requis ";
       $('#misspoints').text(erreuLog);
 
     }
-    if($.trim($('#choix').val()).length==0)
+    if($.trim($('#choix').val())=="")
     {
       e.preventDefault();
       erreuLog="un choix est requis";
@@ -79,47 +125,12 @@
      });
   
       
-      $('#choix').change(function () { 
-      
-       var choix = $('#choix').val()
-       var max_fields      = 10; //maximum input boxes allowed
-        var wrapper   		= $(".input_fields_wrap"); //Fields wrapper
-        var add_button      = $(".add_field_button"); //Add button ID
-
-	var x = 1; //initlal text box count
-	$(add_button).click(function(e){ //on add input button click
-    e.preventDefault();
+    })
     
-		if(x < max_fields){ //max input box allowed
-      x++; //text box increment
-      if(choix==="simple"){
-        alert(choix)
-        $(wrapper).append('<div><input type="text" name="mytext[]"/><input type="radio"/> <a href="#" class="remove_field">Remove</a></div>'); //add input box
-      }
-      else if(choix==="multiple"){
-        alert(choix)
-        $(wrapper).append('<div><input type="text" name="mytext[]"/><input type="checkbox"/> <a href="#" class="remove_field">Remove</a></div>'); //add input box
-      }
-      else{
-        $(wrapper).append('<div><input type="text" name="mytext[]"/><a href="#" class="remove_field">Remove</a></div>'); //add input box
-      }
-		
-		}
-	});
-	
-	$(wrapper).on("click",".remove_field", function(e){ //user click on remove text
-		e.preventDefault(); $(this).parent('div').remove(); x--;
-	})
-       
-       
-        
-      });
-     
-    });
     /////////////
    
     
-  
+    
 
 
   </script>
