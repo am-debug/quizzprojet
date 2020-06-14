@@ -1,138 +1,112 @@
-
-<div style="width:30%;float:left; margin-left:30%;margin-top:-26%">
-<div>
-  <form action=""  id="formul" >
-        <div class="form-group">
-            <label for="question">Question:</label>
-            <textarea class="form-control" rows="5" id="question" name="question"></textarea>
-            <span id="missquestion"></span>
+<div class="container h-100">
+    <form id="questions">
+    <div class="row justify-content-between align-items-center mb-3 ">
+        <div class="col-lg-3">
+            <label for="area">Questions</label>
         </div>
-
-        <div class="form-group">
-            <label for="question">Points:</label>
-            <input type="number" id="points" name="points" >
-            <span id="misspoints"></span>
-        </div>
-
-        <div class="form-group">
-            <label for="choix">Type dereponse:</label>
-            <select id="choix" name="choix" >
-                <option value="">--choix---</option>
-                <option value="texte">choix texte</option>
-                <option value="simple">choix simple</option>
-                <option value="multiple">choix multiple</option>
-            </select> 
-            <span id="misschoix"></span>
-           
-            <button class="add_field_button">Add More Fields</button>
-            <div class="input_fields_wrap">
-               
-               <!-- <div><input type="text" name="mytext[]"></div>-->
+        <div class="col-lg-9">
+            <div class="form-group">
+                <textarea name="question" class="form-control form" id="area" rows="3"></textarea>
             </div>
         </div>
-        <div class="boutons" style="margin-top:5%">
-              <button type ="submit" id="submit" name="submit" class="btn btn-primary mb-2" style=" margin-top:15%;float:left;margin-left:200%">
-                Subscribe
-              </button>   
+    </div>
+    <div class="row justify-content-between align-items-center  mb-3 ">
+        <div class="col-lg-3">
+            <label for="nbr">Nbr de Point</label>
         </div>
-      </form>  
-  
-      
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  
-  <script>
-    $(document).ready(function () {
-      $('#choix').change(function (e) { 
-        e.preventDefault();
-            $('.ajout').remove(); 
-                
-      });
-    
-     $('.add_field_button').click(function (e) { 
-       
-      
-       let choix=$('#choix').val()
-      var wrapper=$('.input_fields_wrap')
-       e.preventDefault();
-       if(choix==="simple")
-      {
-        
-        $(wrapper).append('<div class="ajout"><input type="text" name="mytext[]"/><input type="radio" name="monchoix"/> <a href="#" class="remove_field">Remove</a></div>'); //add input box
-      }
-      else if(choix==="multiple"){
-        
-        $(wrapper).append('<div  class="ajout"><input type="text" name="mytext[]"/> <input type="checkbox" name="monchoix"/> <a href="#" class="remove_field">Remove</a></div>'); //add input box
-      }
-      else {
-        $(wrapper).append('<div  class="ajout"><input type="text" name="mytext[]" /><a href="#" class="remove_field">Remove</a></div>'); //add input box
-      }
-       
-      $(wrapper).on("click",".remove_field", function(e){ //user click on remove text
-		e.preventDefault(); $(this).parent('div').remove(); 
-	  })
-     });
-
-     	
-	// $(wrapper).on("click",".remove_field", function(e){ //user click on remove text
-	// 	e.preventDefault(); $(this).parent('div').remove(); 
-	//  })
-
-  //    $('.remove_field').each(function(e){
-  //       alert(e)})
-    //  $('.remove_field').each(function(e) {
-    //    alert(el)
-    //     $(this).click((e) => {
-    //       e.preventDefault();
-    //       alert('click'+ $(this).html())
-    //         $(this).parent().remove();
-    //     });
-    // });
-    //-----------Validation-----------------------
-    
-      $('#submit').click(function (e) {
-      var erreuLog='';
-      var erreurPass='';
-  
-      if($.trim($('#question').val()).length==0)
-    {
-      e.preventDefault();
-      erreuLog="la question est requis";
-      $('#missquestion').text(erreuLog);
-
-    }
-    if($.trim($('#points').val()).length<=0)
-    {
-      e.preventDefault();
-      erreuLog="le score est requis ";
-      $('#misspoints').text(erreuLog);
-
-    }
-    if($.trim($('#choix').val())=="")
-    {
-      e.preventDefault();
-      erreuLog="un choix est requis";
-      $('#misschoix').text(erreuLog);
-
-    }
-    
-    
-
-     });
-  
-      
-    })
-    
-    /////////////
-   
-    
-    
-
-
-  </script>
-
+        <div class="col-lg-9">
+            <div class="form-group">
+                <input class="h-25 w-25 form" type="number" name="point" id="nbr">
+            </div>
+        </div>
+    </div>
+    <div class="row  align-items-center  justify-content-between mb-2 mb-2 ">
+        <div class="col-lg-3  ">
+            <label for="select">Type de Response</label>
+        </div>
+        <div class="col-lg-8 ">
+            <div class="form-group">
+                <select class="form-control form" name="chx" id="select">
+                    <option value="" selected>Donnez le type de réponse</option>
+                    <option value="texte">Texte</option>
+                    <option value="simple">Choix Simple</option>
+                    <option value="multiple">Choix Multiple</option>
+                </select>
+            </div>
+        </div>
+        <div class=" col-lg-1">
+            <button id="addInput" type="button"> <span class="iconify" data-icon="ant-design:plus-circle-outlined" data-inline="false"></span></button>
+        </div>
+    </div>
+        <div class="align-items-center justify-content-between mb-4" id="inputadded">
+        </div>
+    <div class="float-right">
+        <button type="button" id="enregistrer" class="btn btn-outline-info">ENREGISTRER</button>
+    </div>
+    </form>
 </div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+  var nbr_input = 0;
+    $('#enregistrer').on('click',function (e) {
+        if ($('.form').val()==""){
+            $('.form').css('borderColor','red');
+            e.preventDefault();
+        }
+    });
+    $(document).ready(function () {
+        $('#select').change(function () {
+        $('.add').remove();
+        });
+        $('#addInput').click(function () {
+            let choix = $('#select').val();
+            var inputs = $('#inputadded');
+            if (choix === "simple") {
+                inputs.append(`<div class="add mb-2"><input type="text" id="input_${nbr_input}" name="response[]" onchange="transfer(${nbr_input})" class="form valeur"/><input type="radio" name="choice[]" id="choix${nbr_input}"/> <a href="#" class="remove_field">Delete</a></div>`); //add input box
+            } else if (choix === "multiple") {
+                inputs.append(`<div  class="add mb-2"><input type="text" id="input_${nbr_input}" name="response[]" onchange="transfer(${nbr_input})" class="form valeur"/> <input type="checkbox" name="choice[] "id="choix${nbr_input}"/> <a href="#" class="remove_field">Delete</a></div>`); //add input box
+            } else if (choix === "texte") {
+                inputs.append(`<div  class="add mb-2"><input type="text" name="response[]" class="form valeur"/><a href="#" class="remove_field">Delete</a></div>`); //add input box
+            }
+            inputs.on("click", ".remove_field", function (e) { //user click on remove text
+                e.preventDefault();
+                $(this).parent('div').remove();
+            })
+            nbr_input++;
+        });
+
+        $('#enregistrer').click(function () {
+              console.log($('#questions').serialize());
+            let question= $('#area').val(),
+                point= $('#nbr').val(),
+                type= $('#select').val(),
+                reponses=$('.valeur').val();
+            $.ajax({
+                type:'post',
+                url:'http://localhost/quizprojet/src/register3.php',
+                dataType:'html',
+                data: $('#questions').serialize()  /*{
+                   question:question,
+                    point:point,
+                    type:type,
+                    reponses:reponses
+                }*/,
+                success:function (data) {
+                  console.log(data);
+                  /*
+                    alert(type);
+                    console.log(reponses);
+                   alert(data)
+                   */
+                }
+            })
+        })
+    });
+
+    function transfer(n){
+     // alert( n+ " de " + $('#input_'+n).val() );
+     $('#choix'+n).attr('value',$('#input_'+n).val());
+    }
+</script>
+
+

@@ -1,37 +1,46 @@
 <?php
-include('bd.php');
+ include("bd.php");
+global $bdd ;
 
-global $bdd;
+      if ($_POST) {
+          $question = $_POST['question'];
+          $point = $_POST['point'];
+          $chx = $_POST['chx'];
+          $reponses = $_POST['response'];
+          $choice =  $_POST['choice'];
+          $Ques = ['question'=> $question,'point'=>$point,'chx'=>$chx,'reponses'=>$reponses,'bon_reep'=>$choice];
 
-if(!empty($_POST)){
-    unset($_POST['submit']);
-    
-    
-    /* $user_exist = $bdd->query('SELECT LOGIN FROM utilisateur WHERE LOGIN='.$_POST["login"]);
-    
+          ///
+            
+        $respon= $bdd->prepare('INSERT INTO `quizzprojet`.questions (question, score,choix)
+        VALUES ( :question, :point,:chx)');
+                $respon->execute(array(
+                    
+                    'question'=> $question,
+                    'point'=>$point,
+                    'chx'=>$chx
+                ));
+          ///  
+          $dernier=$bdd->lastInsertId();
+          
+          for ($i=0; $i <count($reponses) ; $i++) { 
+              $rep = $reponses[$i];
+              $etat = 0;
+              if (in_array($rep,$choice )) {
+                  $etat = 1;
+              }
+              
+              $req= $bdd->prepare('INSERT INTO  `quizzprojet`.reponses (reponse,idQues,etat)
+VALUES (:reponse, :idQ,:etat)');
+          $req->execute(array(
+              
+              'reponse'=>$rep,
+              'idQ'=>$dernier,
+              'etat'=>$etat
+          ));
+          }
+          echo json_encode($Ques);
 
-    if(!$user_exist){
-        $sql="INSERT INTO utilisateur (PRENOM, NOM, LOGIN, PASSWORD, REPEAT_PASSWORD , CATEGORIE, Photo)
-        VALUE ('".$_POST["Prenom"]."', '".$_POST["Nom"]."', '".$_POST["login"]."', '".$_POST["pass"]."', 
-         '".$_POST["passe"]."', 'admin', '".$_FILES["avatar"]['name']."')"  ;
-        $reponse = $bdd->exec($sql);
-       
-        if($reponse){
-           echo "success";
-        }
-        else
-        {
-            echo "login exist";
-        }
-        
-    }
-    else
-    {
-        echo "login exist";
-    }*/
-    
-    
-}
+
+      }
 ?>
-
-
