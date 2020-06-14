@@ -35,7 +35,7 @@ session_start();
                 <div style="margin-top:5%; float:right;margin-right:33%" id="menu">
                     <a class="btn btn-success mb-2" href="ajoutquestion">Add question</button>
                     <a class="btn btn-success mb-2" href="listjoueur">Gamer List</button>
-                    <a class="btn btn-success mb-2" href="listquestion">Question List</button>
+                    <a class="btn btn-success mb-2" href="listequestion">Question List</button>
                     <a class="btn btn-success mb-2" href="addadmin">Add Admin</a>
                 </div>   
            

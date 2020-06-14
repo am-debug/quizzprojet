@@ -4,9 +4,9 @@
 //$password="aminlo95";
 //$dbname="aminata_lo";
 
-$servername="localhost";
-$username="root";
-$password="";
+ $servername="localhost";
+ $username="root";
+ $password="";
 $dbname="quizzprojet";
 try
 {
@@ -15,5 +15,7 @@ try
 catch (Exception $e)
 {
         die('Erreur : ' . $e->getMessage());
-}
+ }
+
+
 ?>
