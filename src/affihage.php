@@ -7,7 +7,7 @@ session_start();
 
 include("bd.php");
 
-$query = "SELECT * FROM utilisateur";
+$query = "SELECT * FROM utilisateur where CATEGORIE='joueur' ";
 $statement = $bdd->prepare($query);
 $statement->execute();
 $result = $statement->fetchAll();
