@@ -1,7 +1,7 @@
 <?php
-///$servername="mysql-aminata.alwaysdata.net";  
+//$servername="mysql-aminata.alwaysdata.net";  
 //$username="aminata";
-//$password="aminlo95";
+//$password="aminalo95";
 //$dbname="aminata_lo";
 
  $servername="localhost";
